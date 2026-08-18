@@ -6,20 +6,6 @@
 <title>Yasiru Gems &amp; Jewellery | Live Gold, Silver &amp; Currency Rates</title>
 <meta name="description" content="Live Sri Lankan gold, silver, platinum and currency exchange rates from Yasiru Gems & Jewellery.">
 
-<!--
-  ============================================================================
-  NOTE FOR GITHUB PAGES
-  ----------------------
-  GitHub Pages only auto-loads a file literally named "index.html" at the
-  root of your repository. This file IS named index.html, so it will now
-  load correctly at:
-      https://prymexai-cyber.github.io/Yasiru-Gems-Gold-Rate/
-  If you rename it back to market-rates-section.html, the root URL will
-  404 again — the filename has to stay index.html for Pages to serve it
-  automatically.
-  ============================================================================
--->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -27,11 +13,6 @@
 <body style="margin:0;">
 <section id="market-rates" class="ygr-section">
   <style>
-    /* ==========================================================================
-       Scoped styles — every rule below is namespaced under #market-rates
-       (or its "ygr-" prefixed classes) so it cannot leak into or clash with
-       the rest of your site's CSS.
-       ========================================================================== */
     #market-rates{
       --ygr-cream:        #FBF7EF;
       --ygr-cream-deep:   #F3ECDC;
@@ -61,7 +42,6 @@
     #market-rates *{ box-sizing:border-box; }
     #market-rates .ygr-wrap{ max-width:1240px; margin:0 auto; }
 
-    /* ---------- header ---------- */
     #market-rates .ygr-eyebrow{
       font-family:'JetBrains Mono', monospace;
       font-size:11px; letter-spacing:.26em; text-transform:uppercase;
@@ -101,7 +81,6 @@
     #market-rates .ygr-refresh.spinning svg{ animation: ygr-spin .8s linear; }
     @keyframes ygr-spin{ to{ transform:rotate(360deg); } }
 
-    /* ---------- glass panel base ---------- */
     #market-rates .ygr-glass{
       background:var(--ygr-glass-fill);
       backdrop-filter:blur(22px) saturate(160%);
@@ -118,7 +97,6 @@
     }
     #market-rates .ygr-glass:hover::after{ opacity:1; }
 
-    /* ---------- rates grid ---------- */
     #market-rates .ygr-rates-grid{
       display:grid; grid-template-columns: 1.4fr 1fr 1.4fr; gap:22px;
       margin-bottom:26px;
@@ -171,7 +149,6 @@
     #market-rates .ygr-row-value{ font-family:'JetBrains Mono', monospace; font-size:14.5px; color:var(--ygr-ink); font-weight:500; text-align:right; white-space:nowrap; }
     #market-rates .ygr-row-value .ygr-unit{ font-size:10.5px; color:var(--ygr-mist-soft); margin-left:4px; font-weight:400; }
 
-    /* ---------- chart panel ---------- */
     #market-rates .ygr-chart-panel{ padding:0; overflow:hidden; }
     #market-rates .ygr-chart-head{
       display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
@@ -188,7 +165,6 @@
     }
     #market-rates .ygr-chart-fallback a{ color:var(--ygr-gold-deep); text-decoration:underline; margin-left:4px; }
 
-    /* ---------- responsive ---------- */
     @media (max-width: 980px){
       #market-rates .ygr-rates-grid{ grid-template-columns: 1fr; }
     }
@@ -203,7 +179,6 @@
 
   <div class="ygr-wrap">
 
-    <!-- ============ HEADER ============ -->
     <div class="ygr-head-row">
       <div>
         <div class="ygr-eyebrow">LIVE MARKET RATES</div>
@@ -219,10 +194,8 @@
       </div>
     </div>
 
-    <!-- ============ RATES GRID ============ -->
     <div class="ygr-rates-grid">
 
-      <!-- ---- GOLD PANEL ---- -->
       <div class="ygr-panel ygr-glass">
         <div class="ygr-panel-head">
           <div class="ygr-panel-title">
@@ -234,7 +207,6 @@
         <div id="ygrGoldRows"><!-- populated by JS from the MANUAL_GOLD_RATES object --></div>
       </div>
 
-      <!-- ---- SILVER & PLATINUM PANEL ---- -->
       <div class="ygr-panel ygr-glass">
         <div class="ygr-panel-head">
           <div class="ygr-panel-title">
@@ -246,7 +218,6 @@
         <div id="ygrMetalRows"><!-- populated by JS from the MANUAL_METAL_RATES object --></div>
       </div>
 
-      <!-- ---- CURRENCY PANEL ---- -->
       <div class="ygr-panel ygr-glass">
         <div class="ygr-panel-head">
           <div class="ygr-panel-title">
@@ -260,7 +231,6 @@
 
     </div>
 
-    <!-- ============ TRADINGVIEW GOLD CHART ============ -->
     <div class="ygr-panel ygr-chart-panel ygr-glass">
       <div class="ygr-chart-head">
         <div class="ygr-panel-title">
@@ -270,10 +240,6 @@
         <span class="ygr-badge live"><span class="ygr-dot"></span>LIVE CHART</span>
       </div>
       <div class="ygr-chart-frame">
-        <!-- TradingView Advanced Chart Widget — official embed snippet.
-             This loads a script from tradingview.com, so it needs the
-             visitor's browser to have normal internet access; nothing
-             else on this page depends on it. -->
         <div class="tradingview-widget-container" id="ygrTvContainer">
           <div class="ygr-chart-fallback">
             Chart loading… if it doesn't appear, view it directly on
@@ -292,20 +258,20 @@
     /* ========================================================================
        ============  MANUAL RATES — EDIT THESE EVERY MORNING  ================
        ========================================================================
-       Everything in this block is the ONLY thing you should need to touch
-       day-to-day. Prices are LKR per gram. Update the numbers, update
-       RATES_DATE, save the file — the page picks it up immediately.
+       IMPORTANT: numbers must NOT contain commas (,) as thousand separators.
+       Write 372070.96, not 372,070.96 — a comma inside a number breaks the
+       whole script. Decimal points (.) are fine.
        ======================================================================== */
 
     // Gold price per gram in LKR, by karat purity.
     var MANUAL_GOLD_RATES = {
-      "24K": 3 72 070.96,
-      "22K": 3 41 561.12,
-      "21K": 3 25 562.08,
-      "18K": 2 79 053.2,
-      "14K": 2 17 661.52,
-      "10K": 1 55 272.24,
-      "6K":  93 088.88
+      "24K": 372070.96,
+      "22K": 341561.12,
+      "21K": 325562.08,
+      "18K": 279053.2,
+      "14K": 217661.52,
+      "10K": 155272.24,
+      "6K":  93088.88
     };
 
     // Silver & Platinum price per gram in LKR.
@@ -319,8 +285,7 @@
     var RATES_DATE = "18 August 2026";
 
     // Static fallback currency rates (LKR per 1 unit of foreign currency),
-    // used ONLY if the live exchange rate API cannot be reached. Update
-    // these occasionally so the fallback stays reasonably realistic.
+    // used ONLY if the live exchange rate API cannot be reached.
     var FX_FALLBACK = {
       USD: { symbol: "$",    lkr: 300.50 },
       EUR: { symbol: "€",    lkr: 326.80 },
@@ -335,8 +300,6 @@
        ==========  END OF MANUAL EDIT ZONE — no need to edit below  =========
        ====================================================================== */
 
-    // Free, no-API-key exchange rate endpoint, base currency USD.
-    // Docs: https://www.exchangerate-api.com/docs/free
     var FX_API_URL = "https://open.er-api.com/v6/latest/USD";
     var FX_FETCH_TIMEOUT_MS = 8000;
 
@@ -352,7 +315,6 @@
       return "Rs. " + Number(n).toLocaleString("en-LK", opts);
     }
 
-    /* ---------------- Gold panel ---------------- */
     function renderGold(){
       var wrap = document.getElementById("ygrGoldRows");
       wrap.innerHTML = KARAT_ORDER.map(function(k){
@@ -368,7 +330,6 @@
       }).join("");
     }
 
-    /* ---------------- Silver & Platinum panel ---------------- */
     function renderMetals(){
       var wrap = document.getElementById("ygrMetalRows");
       var items = [
@@ -390,7 +351,6 @@
       '</div>';
     }
 
-    /* ---------------- Currency panel ---------------- */
     function renderFx(rates, isLive){
       var wrap = document.getElementById("ygrFxRows");
       wrap.innerHTML = FX_ORDER.map(function(code){
@@ -421,7 +381,6 @@
         "Currency rates " + (fxIsLive ? "live as of " + timeStr : "showing fallback values");
     }
 
-    /* ---------------- Live FX fetch, with graceful fallback ---------------- */
     function fetchExchangeRates(){
       var btn = document.getElementById("ygrRefreshBtn");
       btn.classList.add("spinning");
@@ -445,11 +404,8 @@
             if (code === "USD") {
               live[code] = { symbol: symbol, lkr: lkrPerUsd };
             } else if (data.rates[code]) {
-              // data.rates[code] = units of `code` per 1 USD.
-              // LKR per 1 unit of `code` = (LKR per USD) / (units of code per USD)
               live[code] = { symbol: symbol, lkr: lkrPerUsd / data.rates[code] };
             } else {
-              // Currency missing from API response — use fallback for just this one.
               live[code] = FX_FALLBACK[code];
             }
           });
@@ -468,7 +424,6 @@
         });
     }
 
-    /* ---------------- Mouse-follow glass glow ---------------- */
     function bindGlassGlow(){
       document.querySelectorAll("#market-rates .ygr-glass").forEach(function(card){
         card.addEventListener("mousemove", function(e){
@@ -479,7 +434,6 @@
       });
     }
 
-    /* ---------------- TradingView embed ---------------- */
     function loadTradingViewChart(){
       var container = document.getElementById("ygrTvContainer");
       if (!container) return;
@@ -502,12 +456,10 @@
         allow_symbol_change: true,
         support_host: "https://www.tradingview.com"
       });
-      // Replace the fallback placeholder with the real widget script.
       container.innerHTML = "";
       container.appendChild(script);
     }
 
-    /* ---------------- Bootstrap ---------------- */
     document.addEventListener("DOMContentLoaded", function(){
       renderGold();
       renderMetals();
