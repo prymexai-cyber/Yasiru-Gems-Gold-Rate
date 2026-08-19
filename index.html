@@ -287,13 +287,13 @@
     // Static fallback currency rates (LKR per 1 unit of foreign currency),
     // used ONLY if the live exchange rate API cannot be reached.
     var FX_FALLBACK = {
-      USD: { symbol: "$",    lkr: 300.50 },
-      EUR: { symbol: "€",    lkr: 326.80 },
-      GBP: { symbol: "£",    lkr: 381.20 },
-      AUD: { symbol: "$",    lkr: 196.40 },
-      SGD: { symbol: "$",    lkr: 222.10 },
-      AED: { symbol: "د.إ",  lkr: 81.85  },
-      JPY: { symbol: "¥",    lkr: 2.03   }
+      USD: { symbol: "$",    lkr: 331.975 },
+      EUR: { symbol: "€",    lkr: 384.659 },
+      GBP: { symbol: "£",    lkr: 449.560 },
+      AUD: { symbol: "$",    lkr: 234.744 },
+      SGD: { symbol: "$",    lkr: 259.965 },
+      AED: { symbol: "د.إ",  lkr: 90.3825  },
+      CAD: { symbol: "c$",    lkr: 239.141   }
     };
 
     /* ======================================================================
@@ -307,7 +307,7 @@
     var FX_ORDER = ["USD", "EUR", "GBP", "AUD", "SGD", "AED", "JPY"];
     var FX_NAMES = {
       USD: "US Dollar", EUR: "Euro", GBP: "British Pound", AUD: "Australian Dollar",
-      SGD: "Singapore Dollar", AED: "UAE Dirham", JPY: "Japanese Yen"
+      SGD: "Singapore Dollar", AED: "UAE Dirham", CAD: "Canadian Dollar"
     };
 
     function formatLKR(n){
